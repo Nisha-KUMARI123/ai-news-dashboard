@@ -2,18 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
 import models
-import os
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="AI News Dashboard")
-
-# ✅ Allow both local and production frontend
-origins = [
-    "http://localhost:3000",
-    "https://*.onrender.com",
-    "*"
-]
 
 app.add_middleware(
     CORSMiddleware,
