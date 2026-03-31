@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# 🤖 AI News Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A dashboard that automatically collects the latest AI news from 20+ sources,
+lets you save favorites, and broadcast them via Email, LinkedIn, and WhatsApp.
 
-## Available Scripts
+## 🚀 Quick Start
 
-In the project directory, you can run:
+### Option 1 — Run Locally
 
-### `npm start`
+**Backend:**
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend:**
+```bash
+cd frontend
+npm install
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open: http://localhost:3000
 
-### `npm test`
+### Option 2 — Run with Docker
+```bash
+docker-compose up --build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Open: http://localhost:3000
 
-### `npm run build`
+## 📰 Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ✅ Fetches AI news from 20+ sources (OpenAI, Google AI, arXiv, TechCrunch...)
+- ✅ Deduplication — no repeated articles
+- ✅ Save favorites with one click
+- ✅ Broadcast to Email, LinkedIn, WhatsApp (simulated)
+- ✅ Clean responsive dashboard
+- ✅ REST API with full documentation at /docs
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🏗️ Architecture
+```
+[20 RSS Sources]
+      ↓
+[FastAPI Backend] → [SQLite Database]
+      ↓
+[React Frontend Dashboard]
+      ↓
+[Broadcast: Email / LinkedIn / WhatsApp]
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🗄️ Database Tables
 
-### `npm run eject`
+| Table | Purpose |
+|---|---|
+| sources | Registered news sources |
+| news_items | Stored articles |
+| favorites | Saved favorites |
+| broadcast_logs | Broadcast history |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧰 Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Layer | Technology |
+|---|---|
+| Frontend | React + Axios |
+| Backend | FastAPI (Python) |
+| Database | SQLite (local) / PostgreSQL (production) |
+| Deployment | Docker + Docker Compose |
+| News Fetching | feedparser + requests |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📡 API Endpoints
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | /news/ | Get all news |
+| POST | /news/fetch | Fetch fresh news |
+| GET | /favorites/ | Get favorites |
+| POST | /favorites/{id} | Add favorite |
+| DELETE | /favorites/{id} | Remove favorite |
+| POST | /broadcast/email/{id} | Send via email |
+| POST | /broadcast/linkedin/{id} | Post to LinkedIn |
+| POST | /broadcast/whatsapp/{id} | Send to WhatsApp |
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎊 YOUR PROJECT IS COMPLETE!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Here's everything you built from scratch:
+```
+ai-news-dashboard/
+├── backend/
+│   ├── main.py          ✅ FastAPI app
+│   ├── database.py      ✅ SQLite connection
+│   ├── models.py        ✅ DB tables
+│   ├── fetcher.py       ✅ 20 news sources
+│   ├── routers/
+│   │   ├── news.py      ✅ News API
+│   │   ├── favorites.py ✅ Favorites API
+│   │   └── broadcast.py ✅ Broadcast API
+│   └── Dockerfile       ✅ Container
+├── frontend/
+│   ├── src/
+│   │   ├── App.js       ✅ Main app
+│   │   ├── components/
+│   │   │   └── Navbar.js ✅ Navigation
+│   │   └── pages/
+│   │       ├── NewsFeed.js  ✅ News page
+│   │       └── Favorites.js ✅ Favorites page
+│   └── Dockerfile       ✅ Container
+├── docker-compose.yml   ✅ One-command deploy
+└── README.md            ✅ Documentation

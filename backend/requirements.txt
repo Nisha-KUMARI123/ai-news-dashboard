@@ -1,4 +1,9 @@
 fastapi
 uvicorn
-feedparser
 sqlalchemy
+feedparser
+requests
+python-dotenv
+pydantic
+httpx
+aiohttp
